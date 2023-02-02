@@ -1,12 +1,3 @@
-const user1 = {
-  name: 'Mark Webber',
-  action: 'reacted to your recent post',
-  post: 'My first tournament today!',
-  time: '1m ago',
-  imageUrl: 'https://i.imgur.com/yXOvdOSs.jpg',
-  unread: true,
-}
-
 function Header() {
   return (
     <>
