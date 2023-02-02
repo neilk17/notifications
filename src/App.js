@@ -23,17 +23,18 @@ function Header() {
   );
 }
 
+// {`total total-${obj.state}`}
 function Notification({ person, post }) {
   return (
       <>
       <div className={`flex gap-3 ${post.isNew === true ? 'bg-gray-blue-1' : ''} p-4 rounded-lg mb-4`}>
         <img
           className="rounded-full w-12 h-12 hover:cursor-pointer"
-          src={person.imageUrl}
+          src={`https://neilk17.github.io/notifications${person.imageUrl}`}
           alt={'Photo of ' + person.name}
         />
-        <div>
-          <p class="text-gray-blue-5">
+        <div className="flex flex-col">
+          <div class="text-gray-blue-5">
             <span class="font-bold text-gray-blue-6 hover:cursor-pointer hover:text-blue">{person.name}</span> 
             &nbsp;{post.action}&nbsp;
             { 
@@ -43,7 +44,7 @@ function Notification({ person, post }) {
               (<span class="text-gray-blue-5 font-bold hover:cursor-pointer hover:text-blue">{post.title}</span> )
             }
             {post.isNew && <div className="inline-flex bg-red p-1 w-2 rounded-full ml-2" />}
-          </p>
+          </div>
           <p class="text-gray-blue-4">{post.time}</p>
         </div>
 
