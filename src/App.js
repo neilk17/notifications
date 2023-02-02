@@ -18,9 +18,9 @@ function Header() {
 function Notification({ person, post }) {
   return (
       <>
-      <div className={`flex gap-3 ${post.isNew === true ? 'bg-gray-blue-1' : ''} p-4 rounded-lg mb-4`}>
+      <div className={`flex gap-3 ${post.isNew === true ? 'bg-gray-blue-1' : ''} p-4 rounded-lg mb-2`}>
         <img
-          className="rounded-full w-12 h-12 hover:cursor-pointer"
+          className="rounded-full w-10 h-10 hover:cursor-pointer"
           src={`https://neilk17.github.io/notifications${person.imageUrl}`}
           alt={'Photo of ' + person.name}
         />
@@ -31,6 +31,12 @@ function Notification({ person, post }) {
             { 
               post.type === 'message' ? 
               (<div class="mt-2 border-2 border-gray-blue-2 hover:cursor-pointer hover:bg-gray-blue-2 rounded-md p-3">{post.title}</div> )
+              : post.type === 'picture' ? 
+                <img
+                  className="float-right ml-24 w-12 h-12 hover:cursor-pointer"
+                  src={`https://neilk17.github.io/notifications/images/${post.targetImageUrl}`}
+                  alt={'commented'}
+                />
               : 
               (<span class="text-gray-blue-5 font-bold hover:cursor-pointer hover:text-blue">{post.title}</span> )
             }
@@ -88,6 +94,7 @@ function NotificationList() {
       id: 5,
       type: 'picture',
       action: 'commented on your picture',
+      targetImageUrl: 'image-chess.webp',
       title: '',
       time: '1 week ago', 
       imageUrl: '/images/avatar-kimberly-smith.webp',
@@ -125,6 +132,8 @@ function NotificationList() {
             type: user.type,
             time: user.time,
             title: user.title,
+            targetImageUrl: user.targetImageUrl,
+
           }}
       />
     </li>
@@ -140,9 +149,7 @@ function App() {
     <div className="bg-gray-blue-1 h-screen sm:pt-16">
       <div className="bg-[color:white] p-5 mx-auto sm:max-w-[630px] shadow-md rounded-lg">
         <Header />
-
         <NotificationList />
-
       </div>
     </div>
   );
